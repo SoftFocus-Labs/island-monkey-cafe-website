@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+:root {
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-pacifico: "Pacifico", cursive;
+  --color-teal-dark: #183a3b;
+  --color-teal-hover: #1d4749;
+  --color-teal-light: #70c0c2;
+  --color-cream: #fef4d1;
+  --color-yellow: #ffe129;
+  --color-yellow-light: #ffef8f;
+  --color-gold: #d4b878;
+  --color-gray-shadow: #c3c3c3;
+}
+
+@theme inline {
+  --font-sans: var(--font-montserrat);
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-teal-dark);
+  font-family: var(--font-montserrat);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Button transitions */
+.btn-transition {
+  transition: all 150ms ease;
+}
+
+/* Dropdown animation */
+.dropdown-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 300ms ease;
+}
+
+.dropdown-content.open {
+  max-height: 200px;
+}
+
+.dropdown-arrow {
+  transition: transform 300ms ease;
+}
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+/* Image protection - prevent download/drag */
+.protected-image {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+
+/* Scroll offset for anchor links - accounts for sticky navbar */
+section[id] {
+  scroll-margin-top: 72px;
+}
