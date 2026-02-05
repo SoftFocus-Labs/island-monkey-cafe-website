@@ -63,5 +63,11 @@ html {
 
 /* Scroll offset for anchor links - accounts for sticky navbar */
 section[id] {
-  scroll-margin-top: 72px;
+  scroll-margin-top: 70px;
+}
+
+@media (min-width: 768px) {
+  section[id] {
+    scroll-margin-top: 76px;
+  }
 }
