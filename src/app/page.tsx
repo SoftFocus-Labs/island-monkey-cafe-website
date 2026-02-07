@@ -97,7 +97,7 @@ function EventDropdown() {
         onClick={() => setIsOpen(!isOpen)}
         className="bg-white border border-[#adadad] flex items-center justify-between w-full px-3 py-2 md:px-4 text-left"
       >
-        <span className={`font-normal text-sm md:text-xl leading-8 md:leading-10 ${selected ? "text-[#183a3b]" : "text-[#4d4d4d]"}`}>
+        <span className={`font-normal text-base md:text-xl leading-8 md:leading-10 ${selected ? "text-[#183a3b]" : "text-[#4d4d4d]"}`}>
           {selected || "Which type of event are you hosting?"}
         </span>
         <svg
@@ -115,9 +115,9 @@ function EventDropdown() {
         </svg>
       </button>
       <div
-        className={`dropdown-content bg-white border border-[#adadad] border-t-0 text-left ${isOpen ? "open" : ""}`}
+        className={`dropdown-content absolute left-0 right-0 z-10 bg-white border border-[#adadad] border-t-0 text-left ${isOpen ? "open" : ""}`}
       >
-        <div className="flex flex-col gap-2 px-3 py-2 md:px-4">
+        <div className="flex flex-col py-2">
           {options.map((option) => (
             <button
               key={option}
@@ -126,7 +126,7 @@ function EventDropdown() {
                 setSelected(option);
                 setIsOpen(false);
               }}
-              className="text-left font-normal text-sm md:text-xl leading-8 md:leading-10 text-[#183a3b] hover:bg-gray-50 px-0 py-0"
+              className="text-left font-normal text-base md:text-xl leading-8 md:leading-10 text-[#183a3b] hover:bg-[#183a3b] hover:text-white px-3 py-1 md:px-4 transition-colors duration-150"
             >
               {option}
             </button>
@@ -143,7 +143,7 @@ function MenuItem({ name, price }: { name: string; price: string }) {
     <div className="flex flex-col gap-2 w-full">
       <div className="flex items-center justify-between font-semibold text-base md:text-xl leading-6 md:leading-7">
         <span className="text-[#183a3b]">{name}</span>
-        <span className="text-[#ab8d09]">{price}</span>
+        <span className="text-[#245556]">{price}</span>
       </div>
       <div className="h-px w-full bg-[#C5C5C5]" />
     </div>
@@ -192,49 +192,55 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen font-[family-name:var(--font-montserrat)]">
       {/* Nav Bar */}
-      <nav className="sticky top-0 z-50 backdrop-blur-md bg-white/65 shadow-[0px_4px_8px_0px_rgba(0,0,0,0.15)] px-4 md:px-8 py-3">
-        <div className="max-w-[1376px] mx-auto flex items-center justify-between">
-          <a href="#" className="btn-transition hover:opacity-80">
-            <ProtectedImage
-              src="/assets/logo.png"
-              alt="Island Monkey Café"
-              width={40}
-              height={40}
-              className="object-cover md:w-12 md:h-12"
-            />
-          </a>
-          {/* Desktop Nav */}
-          <div className="hidden md:flex gap-4 lg:gap-8 items-center">
-            <a href="#our-story" className="font-medium text-[#183a3b] text-sm lg:text-base uppercase hover:opacity-70 btn-transition">
-              Our Story
+      <div className="sticky top-0 z-50">
+        <nav className="backdrop-blur-md bg-white/65 shadow-[0px_4px_8px_0px_rgba(0,0,0,0.15)] px-4 md:px-8 py-3">
+          <div className="max-w-[1376px] mx-auto flex items-center justify-between">
+            <a href="#" className="btn-transition hover:opacity-80">
+              <ProtectedImage
+                src="/assets/logo.png"
+                alt="Island Monkey Café"
+                width={40}
+                height={40}
+                className="object-cover md:w-12 md:h-12"
+              />
             </a>
-            <a href="#gallery" className="font-medium text-[#183a3b] text-sm lg:text-base uppercase hover:opacity-70 btn-transition">
-              Gallery
-            </a>
-            <a href="#menu" className="font-medium text-[#183a3b] text-sm lg:text-base uppercase hover:opacity-70 btn-transition">
-              Menu
-            </a>
-            <NavBookButton />
+            {/* Desktop Nav */}
+            <div className="hidden md:flex gap-4 lg:gap-8 items-center">
+              <a href="#our-story" className="font-medium text-[#183a3b] text-sm lg:text-base uppercase hover:opacity-70 btn-transition">
+                Our Story
+              </a>
+              <a href="#gallery" className="font-medium text-[#183a3b] text-sm lg:text-base uppercase hover:opacity-70 btn-transition">
+                Gallery
+              </a>
+              <a href="#menu" className="font-medium text-[#183a3b] text-sm lg:text-base uppercase hover:opacity-70 btn-transition">
+                Menu
+              </a>
+              <NavBookButton />
+            </div>
+            {/* Mobile Menu Button */}
+            <MobileMenuButton isOpen={mobileMenuOpen} onClick={() => setMobileMenuOpen(!mobileMenuOpen)} />
           </div>
-          {/* Mobile Menu Button */}
-          <MobileMenuButton isOpen={mobileMenuOpen} onClick={() => setMobileMenuOpen(!mobileMenuOpen)} />
-        </div>
-        {/* Mobile Menu */}
-        <div className={`md:hidden overflow-hidden transition-all duration-300 ${mobileMenuOpen ? "max-h-64 mt-4" : "max-h-0"}`}>
-          <div className="flex flex-col gap-4 pb-4">
-            <a href="#our-story" onClick={closeMobileMenu} className="font-medium text-[#183a3b] text-base uppercase hover:opacity-70 btn-transition">
-              Our Story
-            </a>
-            <a href="#gallery" onClick={closeMobileMenu} className="font-medium text-[#183a3b] text-base uppercase hover:opacity-70 btn-transition">
-              Gallery
-            </a>
-            <a href="#menu" onClick={closeMobileMenu} className="font-medium text-[#183a3b] text-base uppercase hover:opacity-70 btn-transition">
-              Menu
-            </a>
-            <NavBookButton onClick={closeMobileMenu} />
+        </nav>
+        {/* Mobile Menu - outside nav for working backdrop blur */}
+        <div className={`md:hidden absolute left-0 right-0 transition-all duration-300 ${mobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 pointer-events-none"}`}>
+          <div className="backdrop-blur-md bg-white/65 shadow-[0px_4px_8px_0px_rgba(0,0,0,0.15)]">
+            <div className="px-4 md:px-8 pb-4 pt-2">
+              <div className="max-w-[1376px] mx-auto flex flex-col gap-4">
+                <a href="#our-story" onClick={closeMobileMenu} className="font-medium text-[#183a3b] text-base uppercase hover:opacity-70 btn-transition">
+                  Our Story
+                </a>
+                <a href="#gallery" onClick={closeMobileMenu} className="font-medium text-[#183a3b] text-base uppercase hover:opacity-70 btn-transition">
+                  Gallery
+                </a>
+                <a href="#menu" onClick={closeMobileMenu} className="font-medium text-[#183a3b] text-base uppercase hover:opacity-70 btn-transition">
+                  Menu
+                </a>
+                <NavBookButton onClick={closeMobileMenu} />
+              </div>
+            </div>
           </div>
         </div>
-      </nav>
+      </div>
 
       {/* Hero Section */}
       <section className="relative min-h-[500px] md:min-h-[600px] lg:h-[835px] flex items-center justify-center overflow-hidden px-4 py-8 md:px-8 lg:px-16 md:py-2">
@@ -279,7 +285,6 @@ export default function Home() {
                 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
               </p>
             </div>
-            <YellowButton href="#gallery">VIEW THE GALLERY</YellowButton>
           </div>
           <div className="flex-1 flex justify-center md:justify-end order-1 md:order-2">
             <div className="relative h-[220px] w-[300px] md:h-[280px] md:w-[420px] lg:h-[343px] lg:w-[528px]">
@@ -433,17 +438,17 @@ export default function Home() {
               <input
                 type="text"
                 placeholder="Enter your name"
-                className="bg-white border border-[#adadad] px-3 py-2 md:px-4 text-sm md:text-xl leading-8 md:leading-10 text-[#4d4d4d] placeholder:text-[#4d4d4d] w-full"
+                className="bg-white border border-[#adadad] px-3 py-2 md:px-4 text-base md:text-xl leading-8 md:leading-10 text-[#4d4d4d] placeholder:text-[#4d4d4d] w-full"
               />
               <input
                 type="email"
                 placeholder="Enter your email address"
-                className="bg-white border border-[#adadad] px-3 py-2 md:px-4 text-sm md:text-xl leading-8 md:leading-10 text-[#4d4d4d] placeholder:text-[#4d4d4d] w-full"
+                className="bg-white border border-[#adadad] px-3 py-2 md:px-4 text-base md:text-xl leading-8 md:leading-10 text-[#4d4d4d] placeholder:text-[#4d4d4d] w-full"
               />
               <EventDropdown />
               <textarea
                 placeholder="Message"
-                className="bg-white border border-[#adadad] px-3 py-2 md:px-4 text-sm md:text-xl leading-8 md:leading-10 text-[#4d4d4d] placeholder:text-[#4d4d4d] w-full h-[160px] md:h-[200px] lg:h-[224px] resize-none"
+                className="bg-white border border-[#adadad] px-3 py-2 md:px-4 text-base md:text-xl leading-8 md:leading-10 text-[#4d4d4d] placeholder:text-[#4d4d4d] w-full h-[160px] md:h-[200px] lg:h-[224px] resize-none"
               />
             </form>
             <YellowButton>SEND MESSAGE</YellowButton>
