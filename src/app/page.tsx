@@ -21,9 +21,7 @@ function NavBookButton({ onClick }: { onClick?: () => void }) {
     <a
       href="#book-us"
       onClick={onClick}
-      className="btn-transition border-2 border-[#183a3b] px-4 py-2 md:px-6 md:py-3 font-medium text-[#183a3b] uppercase text-base md:text-sm lg:text-base text-center w-full md:w-auto
-        hover:bg-[#183a3b] hover:border-white hover:text-white
-        active:bg-[#1d4749] active:border-white active:text-white"
+      className="btn-transition border-2 border-[#183a3b] px-4 py-2 md:px-6 md:py-3 font-medium text-[#183a3b] uppercase text-base md:text-sm lg:text-base text-center w-full md:w-auto hover:bg-[#183a3b] hover:border-white hover:text-white active:bg-[#1d4749] active:border-white active:text-white"
     >
       Book Us
     </a>
@@ -47,11 +45,7 @@ function MobileMenuButton({ isOpen, onClick }: { isOpen: boolean; onClick: () =>
 
 // Yellow Button Component with hover/click states
 function YellowButton({ children, className = "", href }: { children: React.ReactNode; className?: string; href?: string }) {
-  const buttonClasses = `btn-transition bg-[#ffe129] rounded-lg px-6 py-3 md:px-10 md:py-4 font-bold text-[#4d4200] text-lg md:text-2xl tracking-wide uppercase inline-block w-full md:w-fit text-center
-    shadow-[6px_6px_0px_0px_#c3c3c3] md:shadow-[8px_8px_0px_0px_#c3c3c3]
-    hover:shadow-[0px_0px_0px_0px_#c3c3c3]
-    active:bg-[#ffef8f] active:shadow-[0px_0px_0px_0px_#c3c3c3]
-    ${className}`;
+  const buttonClasses = `btn-transition bg-[#ffe129] rounded-lg px-6 py-3 md:px-10 md:py-4 font-bold text-[#4d4200] text-lg md:text-2xl tracking-wide uppercase inline-block w-full md:w-fit text-center shadow-[6px_6px_0px_0px_#c3c3c3] md:shadow-[8px_8px_0px_0px_#c3c3c3] hover:shadow-[0px_0px_0px_0px_#c3c3c3] active:bg-[#ffef8f] active:shadow-[0px_0px_0px_0px_#c3c3c3] ${className}`;
 
   if (href) {
     return (
@@ -73,10 +67,7 @@ function HeroButton({ children, href }: { children: React.ReactNode; href: strin
   return (
     <a
       href={href}
-      className="btn-transition bg-[#183a3b] rounded-lg px-6 py-3 md:px-10 md:py-4 font-bold text-[#fef4d1] text-lg md:text-2xl tracking-wide uppercase inline-block w-full md:w-fit text-center
-        shadow-[6px_6px_0px_0px_#d4b878] md:shadow-[8px_8px_0px_0px_#d4b878]
-        hover:shadow-[0px_0px_0px_0px_#d4b878]
-        active:bg-[#1d4749] active:shadow-[0px_0px_0px_0px_#d4b878]"
+      className="btn-transition bg-[#183a3b] rounded-lg px-6 py-3 md:px-10 md:py-4 font-bold text-[#fef4d1] text-lg md:text-2xl tracking-wide uppercase inline-block w-full md:w-fit text-center shadow-[6px_6px_0px_0px_#d4b878] md:shadow-[8px_8px_0px_0px_#d4b878] hover:shadow-[0px_0px_0px_0px_#d4b878] active:bg-[#1d4749] active:shadow-[0px_0px_0px_0px_#d4b878]"
     >
       {children}
     </a>
@@ -115,9 +106,9 @@ function EventDropdown() {
         </svg>
       </button>
       <div
-        className={`dropdown-content absolute left-0 right-0 z-10 bg-white border border-[#adadad] border-t-0 text-left ${isOpen ? "open" : ""}`}
+        className={`dropdown-content absolute top-full left-0 right-0 z-10 ${isOpen ? "open" : ""}`}
       >
-        <div className="flex flex-col py-2">
+        <div className="flex flex-col py-2 bg-white border border-[#adadad] border-t-0">
           {options.map((option) => (
             <button
               key={option}
@@ -222,20 +213,22 @@ export default function Home() {
           </div>
         </nav>
         {/* Mobile Menu - outside nav for working backdrop blur */}
-        <div className={`md:hidden absolute left-0 right-0 transition-all duration-300 ${mobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 pointer-events-none"}`}>
-          <div className="backdrop-blur-md bg-white/65 shadow-[0px_4px_8px_0px_rgba(0,0,0,0.15)]">
-            <div className="px-4 md:px-8 pb-4 pt-2">
-              <div className="max-w-[1376px] mx-auto flex flex-col gap-4">
-                <a href="#our-story" onClick={closeMobileMenu} className="font-medium text-[#183a3b] text-base uppercase hover:opacity-70 btn-transition">
-                  Our Story
-                </a>
-                <a href="#gallery" onClick={closeMobileMenu} className="font-medium text-[#183a3b] text-base uppercase hover:opacity-70 btn-transition">
-                  Gallery
-                </a>
-                <a href="#menu" onClick={closeMobileMenu} className="font-medium text-[#183a3b] text-base uppercase hover:opacity-70 btn-transition">
-                  Menu
-                </a>
-                <NavBookButton onClick={closeMobileMenu} />
+        <div className={`md:hidden absolute left-0 right-0 grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.05,0.8,0.3,1)] ${mobileMenuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr] pointer-events-none"}`}>
+          <div className="overflow-hidden">
+            <div className="backdrop-blur-md bg-white/65 shadow-[0px_4px_8px_0px_rgba(0,0,0,0.15)]">
+              <div className="px-4 md:px-8 pb-4 pt-6">
+                <div className="max-w-[1376px] mx-auto flex flex-col gap-8">
+                  <a href="#our-story" onClick={closeMobileMenu} className="font-medium text-[#183a3b] text-base uppercase hover:opacity-70 btn-transition">
+                    Our Story
+                  </a>
+                  <a href="#gallery" onClick={closeMobileMenu} className="font-medium text-[#183a3b] text-base uppercase hover:opacity-70 btn-transition">
+                    Gallery
+                  </a>
+                  <a href="#menu" onClick={closeMobileMenu} className="font-medium text-[#183a3b] text-base uppercase hover:opacity-70 btn-transition">
+                    Menu
+                  </a>
+                  <NavBookButton onClick={closeMobileMenu} />
+                </div>
               </div>
             </div>
           </div>
