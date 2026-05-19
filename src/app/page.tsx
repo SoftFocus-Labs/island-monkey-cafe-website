@@ -37,7 +37,7 @@ function MobileMenuButton({ isOpen, onClick }: { isOpen: boolean; onClick: () =>
       aria-label={isOpen ? "Close menu" : "Open menu"}
     >
       <span className={`block w-6 h-0.5 bg-[#183a3b] transition-all duration-300 ${isOpen ? "rotate-45 translate-y-2" : ""}`} />
-      <span className={`block w-6 h-0.5 bg-[#183a3b] transition-all duration-300 ${isOpen ? "opacity-0" : ""}`} />
+      <span className={`block w-6 h-0.5 bg-[#183a3b] transition-all duration-300 ${isOpen ? "opacity-0 scale-x-0" : ""}`} />
       <span className={`block w-6 h-0.5 bg-[#183a3b] transition-all duration-300 ${isOpen ? "-rotate-45 -translate-y-2" : ""}`} />
     </button>
   );
@@ -184,15 +184,15 @@ export default function Home() {
     <div className="flex flex-col min-h-screen font-[family-name:var(--font-montserrat)]">
       {/* Nav Bar */}
       <div className="sticky top-0 z-50">
-        <nav className="backdrop-blur-md bg-white/65 shadow-[0px_4px_8px_0px_rgba(0,0,0,0.15)] px-4 md:px-8 py-3">
+        <nav className="backdrop-blur-md bg-white/65 shadow-[0px_4px_8px_0px_rgba(0,0,0,0.15)] px-4 md:px-8 py-4 md:py-3">
           <div className="max-w-[1376px] mx-auto flex items-center justify-between">
             <a href="#" className="btn-transition hover:opacity-80">
               <ProtectedImage
-                src="/assets/logo.png"
+                src="/assets/island-monkey-linear.svg"
                 alt="Island Monkey Café"
-                width={40}
-                height={40}
-                className="object-cover md:w-12 md:h-12"
+                width={238}
+                height={45}
+                className="h-8 md:h-11 w-auto"
               />
             </a>
             {/* Desktop Nav */}
@@ -317,33 +317,32 @@ export default function Home() {
       </section>
 
       {/* Gallery Section */}
-      <section id="gallery" className="bg-[#70c0c2] flex flex-col items-center overflow-hidden px-4 py-8 md:p-8 lg:p-16">
-        <div className="max-w-[1312px] w-full flex flex-col gap-4 md:gap-6 lg:gap-8">
-          {/* Mobile: 4 images in 2x2 grid / Tablet+: 6 images in two-column rows */}
+      <section id="gallery" className="bg-[#70c0c2] flex flex-col items-center overflow-hidden md:p-8 lg:p-16">
+        <div className="max-w-[1312px] w-full flex flex-col gap-0 md:gap-6 lg:gap-8">
           {/* Row 1 */}
-          <div className="flex flex-row gap-4 md:gap-6 lg:gap-8">
-            <div className="flex-1 md:flex-none md:w-[35%] lg:w-[357px] h-[150px] md:h-[200px] lg:h-[280px] relative rounded-[40px] md:rounded-l-[120px] lg:rounded-l-[176px] md:rounded-r-none overflow-hidden">
+          <div className="flex flex-row gap-0 md:gap-6 lg:gap-8">
+            <div className="w-2/3 md:flex-none md:w-[35%] lg:w-[357px] h-[182px] md:h-[200px] lg:h-[280px] relative md:rounded-l-[120px] lg:rounded-l-[176px] md:rounded-r-none overflow-hidden">
               <ProtectedImage src="/assets/gallery-1.png" alt="Gallery" fill className="object-cover" />
             </div>
-            <div className="flex-1 h-[150px] md:h-[200px] lg:h-[280px] relative rounded-[40px] md:rounded-r-[120px] lg:rounded-r-[176px] md:rounded-l-none overflow-hidden">
+            <div className="w-1/3 md:flex-1 h-[182px] md:h-[200px] lg:h-[280px] relative md:rounded-r-[120px] lg:rounded-r-[176px] md:rounded-l-none overflow-hidden">
               <ProtectedImage src="/assets/gallery-2.png" alt="Gallery" fill className="object-cover" />
             </div>
           </div>
           {/* Row 2 */}
-          <div className="flex flex-row gap-4 md:gap-6 lg:gap-8">
-            <div className="flex-1 h-[150px] md:h-[200px] lg:h-[280px] relative rounded-[40px] md:rounded-l-[120px] lg:rounded-l-[176px] md:rounded-r-none overflow-hidden">
+          <div className="flex flex-row gap-0 md:gap-6 lg:gap-8">
+            <div className="w-1/3 md:flex-1 h-[182px] md:h-[200px] lg:h-[280px] relative md:rounded-l-[120px] lg:rounded-l-[176px] md:rounded-r-none overflow-hidden">
               <ProtectedImage src="/assets/gallery-3.png" alt="Gallery" fill className="object-cover" />
             </div>
-            <div className="flex-1 md:flex-none md:w-[35%] lg:w-[357px] h-[150px] md:h-[200px] lg:h-[280px] relative rounded-[40px] md:rounded-r-[120px] lg:rounded-r-[176px] md:rounded-l-none overflow-hidden">
+            <div className="w-2/3 md:flex-none md:w-[35%] lg:w-[357px] h-[182px] md:h-[200px] lg:h-[280px] relative md:rounded-r-[120px] lg:rounded-r-[176px] md:rounded-l-none overflow-hidden">
               <ProtectedImage src="/assets/gallery-4.png" alt="Gallery" fill className="object-cover" />
             </div>
           </div>
           {/* Row 3 */}
-          <div className="flex flex-row gap-4 md:gap-6 lg:gap-8">
-            <div className="flex-1 md:flex-none md:w-[35%] lg:w-[357px] h-[150px] md:h-[200px] lg:h-[280px] relative rounded-[40px] md:rounded-l-[120px] lg:rounded-l-[176px] md:rounded-r-none overflow-hidden">
+          <div className="flex flex-row gap-0 md:gap-6 lg:gap-8">
+            <div className="w-2/3 md:flex-none md:w-[35%] lg:w-[357px] h-[182px] md:h-[200px] lg:h-[280px] relative md:rounded-l-[120px] lg:rounded-l-[176px] md:rounded-r-none overflow-hidden">
               <ProtectedImage src="/assets/gallery-5.png" alt="Gallery" fill className="object-cover" />
             </div>
-            <div className="flex-1 h-[150px] md:h-[200px] lg:h-[280px] relative rounded-[40px] md:rounded-r-[120px] lg:rounded-r-[176px] md:rounded-l-none overflow-hidden">
+            <div className="w-1/3 md:flex-1 h-[182px] md:h-[200px] lg:h-[280px] relative md:rounded-r-[120px] lg:rounded-r-[176px] md:rounded-l-none overflow-hidden">
               <ProtectedImage src="/assets/gallery-6.png" alt="Gallery" fill className="object-cover" />
             </div>
           </div>
