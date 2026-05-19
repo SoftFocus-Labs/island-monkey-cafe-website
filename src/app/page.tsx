@@ -108,20 +108,22 @@ function EventDropdown() {
       <div
         className={`dropdown-content absolute top-full left-0 right-0 z-10 ${isOpen ? "open" : ""}`}
       >
-        <div className="flex flex-col py-2 bg-white border border-[#adadad] border-t-0">
-          {options.map((option) => (
-            <button
-              key={option}
-              type="button"
-              onClick={() => {
-                setSelected(option);
-                setIsOpen(false);
-              }}
-              className="text-left font-normal text-base md:text-xl leading-8 md:leading-10 text-[#183a3b] hover:bg-[#183a3b] hover:text-white px-3 py-1 md:px-4 transition-colors duration-150"
-            >
-              {option}
-            </button>
-          ))}
+        <div className="dropdown-clip">
+          <div className="flex flex-col py-2 bg-white border border-[#adadad] border-t-0">
+            {options.map((option) => (
+              <button
+                key={option}
+                type="button"
+                onClick={() => {
+                  setSelected(option);
+                  setIsOpen(false);
+                }}
+                className="text-left font-normal text-base md:text-xl leading-8 md:leading-10 text-[#183a3b] hover:bg-[#183a3b] hover:text-white px-3 py-1 md:px-4 transition-colors duration-150"
+              >
+                {option}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -213,9 +215,9 @@ export default function Home() {
           </div>
         </nav>
         {/* Mobile Menu - outside nav for working backdrop blur */}
-        <div className={`md:hidden absolute left-0 right-0 grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.05,0.8,0.3,1)] ${mobileMenuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr] pointer-events-none"}`}>
+        <div className={`md:hidden absolute left-0 right-0 grid transition-[grid-template-rows,box-shadow] duration-300 ease-[cubic-bezier(0.05,0.8,0.3,1)] ${mobileMenuOpen ? "grid-rows-[1fr] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.15)]" : "grid-rows-[0fr] pointer-events-none shadow-none"}`}>
           <div className="overflow-hidden">
-            <div className="backdrop-blur-md bg-white/65 shadow-[0px_4px_8px_0px_rgba(0,0,0,0.15)]">
+            <div className="backdrop-blur-md bg-white/65">
               <div className="px-4 md:px-8 pb-4 pt-6">
                 <div className="max-w-[1376px] mx-auto flex flex-col gap-8">
                   <a href="#our-story" onClick={closeMobileMenu} className="font-medium text-[#183a3b] text-base uppercase hover:opacity-70 btn-transition">
